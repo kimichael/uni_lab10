@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace SomeProject.Library.Client
 {
+    /// <summary>
+    /// Класс, инкапсулирующий поведение клиента
+    /// </summary>
     public class Client
     {
         private const string fileHeader = "file:";
@@ -15,6 +18,10 @@ namespace SomeProject.Library.Client
 
         public TcpClient tcpClient;
 
+        /// <summary>
+        /// Метод, ждущий и принимающий сигнал от сервера
+        /// </summary>
+        /// <returns>Возвращает результат операции</returns>
         public OperationResult ReceiveMessageFromServer()
         {
             try
@@ -40,6 +47,10 @@ namespace SomeProject.Library.Client
             }
         }
 
+        /// <summary>
+        /// Метод, отправляющий сообщение на сервер
+        /// </summary>
+        /// <returns>Возвращает результат операции</returns>
         public OperationResult SendMessageToServer(string message)
         {
             try
@@ -58,6 +69,10 @@ namespace SomeProject.Library.Client
             }
         }
 
+        /// <summary>
+        /// Метод, отправляющий файл на сервер
+        /// </summary>
+        /// <returns>Возвращает результат операции</returns>
         public OperationResult SendFileToServer(string fileName) {
             try
             {
@@ -81,13 +96,4 @@ namespace SomeProject.Library.Client
             
             }
         }
-
-        public static byte[] Combine(byte[] first, byte[] second)
-        {
-            byte[] ret = new byte[first.Length + second.Length];
-            Buffer.BlockCopy(first, 0, ret, 0, first.Length);
-            Buffer.BlockCopy(second, 0, ret, first.Length, second.Length);
-            return ret;
-        }
-    }
 }
